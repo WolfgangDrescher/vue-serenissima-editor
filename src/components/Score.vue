@@ -14,10 +14,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    @font-face {
-        font-family: Serenissima;
-        src: url("../assets/EMS_Serenissima.otf") format("opentype");
-    }
     .vse__score {
         font-family: 'Serenissima';
         font-size: 5rem;
