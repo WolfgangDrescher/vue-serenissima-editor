@@ -56,11 +56,6 @@ export default {
             let result = this.keyCodes.filter(keyCode => {
                 return this.lastScoreCharacter === keyCode.keyCode || (keyCode.variants.includes(this.lastScoreCharacter) === true);
             });
-            result.map(keyCode => {
-                if(keyCode.keyCode !== this.lastScoreCharacter) {
-                    keyCode.variants = [this.lastScoreCharacter];
-                }
-            });
             return result.length ? result : this.keyCodes;
         },
     },
