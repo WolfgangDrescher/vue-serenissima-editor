@@ -1,0 +1,16 @@
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$transitionDuration: .3s;
+$transitionAll: all $transitionDuration ease-in-out;
+$textColor: #2c3e50;
