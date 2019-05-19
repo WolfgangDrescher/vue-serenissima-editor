@@ -1,12 +1,12 @@
 <template>
-    <div class="vse__gui">
+    <transition-group class="vse__gui" name="vse__key-list-transition">
         <template v-for="keyCode in filteredKeyCodes">
             <key :key="keyCode.keyCode" :key-code="keyCode.keyCode" />
             <template v-for="variant in keyCode.variants">
                 <key :key="keyCode.keyCode + variant" :key-code="keyCode.keyCode + variant" />
             </template>
         </template>
-    </div>
+    </transition-group>
 </template>
 
 <script>
@@ -85,6 +85,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    @import '../assets/scss/import.scss';
+
     .vse__gui {
         display: flex;
         flex-wrap: nowrap;
@@ -96,6 +98,20 @@ export default {
 
         &::-webkit-scrollbar {
             display: none;
+        }
+    }
+
+    .vse__key-list-transition {
+        &-move,
+        &-enter-active,
+        &-leave-active {
+            transition: $transitionAll;
+        }
+
+        &-enter,
+        &-leave-to {
+            opacity: 0;
+            transform: scale(0);
         }
     }
 </style>
