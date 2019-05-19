@@ -15,11 +15,6 @@ import Gui from '../components/Gui.vue';
 
 export default {
     components: { Score, Console, Gui },
-    data() {
-        return {
-            score: '',
-        };
-    },
 };
 </script>
 
