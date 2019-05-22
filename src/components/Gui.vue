@@ -1,11 +1,6 @@
 <template>
     <transition-group class="vse__gui" name="vse__key-list-transition">
-        <template v-for="keyCode in filteredKeyCodes">
-            <key :key="keyCode.keyCode" :key-code="keyCode.keyCode" />
-            <template v-for="variant in keyCode.variants">
-                <key :key="keyCode.keyCode + variant" :key-code="keyCode.keyCode + variant" />
-            </template>
-        </template>
+        <key v-for="keyCode in filteredKeyCodes" :key="keyCode" :key-code="keyCode" />
     </transition-group>
 </template>
 
@@ -16,6 +11,14 @@ export default {
     components: { Key },
     data() {
         return {
+            groups: {
+                clefs: ['C', 'F', 'G'],
+                timeSignatures: ['T'],
+                notes: ['1' ,'2', '3', '4', '5', '6', '7', '8', 'q', 'w', 'e'],
+                rests: ['10' ,'20', '30', '40', '50', '60', '70', /*'80',*/ 'q0', 'w0', 'e0'],
+                additions: ['+', '-', 'U', '.'],
+                specialCharacters: ['u', 'i', 'o', 'p', 'B', 'E', 'R'],
+            },
             keyCodes: [
                 {
                     keyCode: 'C',
@@ -49,17 +52,57 @@ export default {
         };
     },
     computed: {
-        lastScoreCharacter() {
-            return this.$store.state.score.substr(-1);
+        allKeyCodes() {
+            let keyCodes = [];
+            this.keyCodes.forEach((keyCode) => {
+                keyCodes.push(keyCode.keyCode);
+                keyCode.variants.forEach((variant) => {
+                    keyCodes.push(keyCode.keyCode + variant) ;
+                });
+            });
+            return keyCodes;
         },
         filteredKeyCodes() {
-            let result = this.keyCodes.filter(keyCode => {
-                return this.lastScoreCharacter === keyCode.keyCode || (keyCode.variants.includes(this.lastScoreCharacter) === true);
+            if(this.$store.state.score === '') {
+                return this.allKeyCodes.filter((value) => {
+                    return this.groups.clefs.includes(value);
+                });
+            }
+            if(this.$store.state.score.match(/^(C|F|G)\d$/g)) {
+                return this.allKeyCodes.filter((value) => {
+                    return value.startsWith('T');
+                });
+            }
+            const lastChar = this.lastChar();
+            const last2Chars = this.lastChar(2);
+            let results = [];
+            if(last2Chars.length === 2) {
+                results = this.allKeyCodes.filter((value) => {
+                    if(last2Chars === value) return false;
+                    return value.startsWith(last2Chars);
+                });
+                if(results.length) {
+                    return results;
+                }
+            }
+            if(lastChar.length === 1) {
+                results = this.allKeyCodes.filter((value) => {
+                    if(lastChar === value) return false;
+                    return value.startsWith(lastChar) && value[1] !== '0';
+                });
+                if(results.length) {
+                    return results;
+                }
+            }
+            return this.allKeyCodes.filter((value) => {
+                return this.groups.notes.includes(value);
             });
-            return result.length ? result : this.keyCodes;
         },
     },
     methods: {
+        lastChar(num) {
+            return this.$store.state.score.substr(-num || -1);
+        },
         getForAllLines(symbols) {
             let keyCodes = [];
             symbols.forEach((symbol) => {
