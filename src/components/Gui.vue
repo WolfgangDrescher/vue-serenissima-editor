@@ -88,7 +88,7 @@ export default {
             if(lastChar.length === 1) {
                 results = this.allKeyCodes.filter((value) => {
                     if(lastChar === value) return false;
-                    return value.startsWith(lastChar) && value[1] !== '0';
+                    return value.startsWith(lastChar) && (value[1] !== '0') || (value === lastChar + '0');
                 });
                 if(results.length) {
                     return results;
