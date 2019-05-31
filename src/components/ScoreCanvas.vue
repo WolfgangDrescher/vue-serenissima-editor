@@ -34,7 +34,7 @@ export default {
             this.context = this.$refs.scoreCanvas.getContext('2d');
             this.setCanvasSizes();
             this.clearCanvas();
-            this.context.font = '10rem Serenissima';
+            this.context.font = '5rem Serenissima';
             this.context.textBaseline = 'top';
             this.context.fillStyle = '#2c3e50';
             this.fillTextMultiline(this.context, this.score, 0, 0, this.measureTextHeight(), this.context.canvas.clientWidth);
