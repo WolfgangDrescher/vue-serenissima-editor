@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         score: '',
         sidebarIsOpen: false,
+        scoreMode: 'ScoreCanvas',
     },
     mutations: {
         setScore(state, value) {
@@ -14,6 +15,12 @@ export default new Vuex.Store({
         },
         toggleSidebar(state) {
             state.sidebarIsOpen = !state.sidebarIsOpen;
+        },
+        toggleScoreMode(state) {
+            state.scoreMode = state.scoreMode === 'ScoreCanvas' ? 'ScoreFont' : 'ScoreCanvas';
+        },
+        setScoreMode(state, value) {
+            state.scoreMode = value;
         },
     },
 });

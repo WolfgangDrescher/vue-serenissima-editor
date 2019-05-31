@@ -2,6 +2,8 @@
     <aside :class="{'vse__sidebar--is-open': $store.state.sidebarIsOpen}">
         <div class="vse__toggle-sidebar" @click="toggleSidebar">←</div>
         <h1>vue-serenissima-editor</h1>
+        <button @click="$store.commit('setScoreMode', 'ScoreCanvas')">Canvas</button>
+        <button @click="$store.commit('setScoreMode', 'ScoreFont')">Font</button>
         <p>
             By Elam Rotem and Wolfgang Drescher
             <a href="https://www.earlymusicsources.com/more/font-serenissima">Early Music Sources</a>
