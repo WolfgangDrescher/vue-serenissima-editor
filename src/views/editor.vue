@@ -1,6 +1,6 @@
 <template>
     <div class="vse__editor">
-        <score :score="$store.state.score" />
+        <component is="ScoreCanvas" :score="$store.state.score"></component>
         <div class="vse__footer">
             <console />
             <gui class="vse__gui" />
@@ -9,12 +9,13 @@
 </template>
 
 <script>
-import Score from '../components/Score.vue';
+import ScoreFont from '../components/ScoreFont.vue';
+import ScoreCanvas from '../components/ScoreCanvas.vue';
 import Console from '../components/Console.vue';
 import Gui from '../components/Gui.vue';
 
 export default {
-    components: { Score, Console, Gui },
+    components: { ScoreFont, ScoreCanvas, Console, Gui },
 };
 </script>
 
