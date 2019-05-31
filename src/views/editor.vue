@@ -55,6 +55,7 @@ export default {
         flex-direction: column;
     }
     .vse__score-wrapper {
+        padding: 15px;
         flex-grow: 1;
         overflow-y: auto;
     }
