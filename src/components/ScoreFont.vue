@@ -19,6 +19,5 @@ export default {
         font-size: 5rem;
         font-variant-ligatures: normal;
         word-break: break-all;
-        padding: 15px;
     }
 </style>
