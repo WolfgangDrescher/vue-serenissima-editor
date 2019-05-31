@@ -25,6 +25,7 @@ export default {
     aside {
         display: block;
         background-color: rgba(0,0,0,.05);
+        padding: 15px;
     }
     .vse__toggle-sidebar {
         width: 35px;
@@ -32,7 +33,7 @@ export default {
         line-height: 35px;
         text-align: center;
         background-color: $borderColor;
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% - 15px));
         transition: $transitionAll;
     }
     .vse__sidebar--is-open .vse__toggle-sidebar {
