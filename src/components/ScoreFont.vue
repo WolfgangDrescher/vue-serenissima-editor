@@ -1,5 +1,5 @@
 <template>
-    <div class="vse__score">{{ score }}</div>
+    <div class="vse__score-font">{{ score }}</div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .vse__score {
+    .vse__score-font {
         font-family: 'Serenissima';
         font-size: 5rem;
         font-variant-ligatures: normal;
