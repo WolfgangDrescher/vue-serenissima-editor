@@ -37,6 +37,7 @@ export default {
         background-color: $borderColor;
         transform: translateX(calc(-100% - 15px));
         transition: $transitionAll;
+        cursor: pointer;
     }
     .vse__sidebar--is-open .vse__toggle-sidebar {
         transform: translateX(0) scaleX(-1);
