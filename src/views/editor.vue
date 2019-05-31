@@ -1,5 +1,5 @@
 <template>
-    <div class="vse__editor">
+    <div :class="['vse__editor', {'vse__editor--sidebar-is-open': $store.state.sidebarIsOpen}]">
         <div class="vse__main-wrapper">
             <div class="vse__main">
                 <div class="vse__score-wrapper">
@@ -31,6 +31,7 @@ export default {
     @import '../assets/scss/import.scss';
 
     .vse__editor {
+        overflow: hidden;
         position: relative;
         width: 100%;
         height: 100%;
@@ -44,7 +45,7 @@ export default {
     }
     .vse__main-wrapper {
         height: 100%;
-        padding-right: $sidebarWidth;
+        transition: $transitionAll;
     }
     .vse__main {
         position: relative;
@@ -63,5 +64,13 @@ export default {
         height: 100%;
         right: 0;
         top: 0;
+        transform: translateX(100%);
+        transition: $transitionAll;
+    }
+    .vse__editor--sidebar-is-open .vse__main-wrapper {
+        padding-right: $sidebarWidth;
+    }
+    .vse__editor--sidebar-is-open .vse__aside {
+        transform: translateX(0);
     }
 </style>
