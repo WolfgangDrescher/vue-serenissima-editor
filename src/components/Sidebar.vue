@@ -1,6 +1,10 @@
 <template>
     <aside>
         <h1>vue-serenissima-editor</h1>
+        <p>
+            By Elam Rotem and Wolfgang Drescher
+            <a href="https://www.earlymusicsources.com/more/font-serenissima">Early Music Sources</a>
+        </p>
     </aside>
 </template>
 
