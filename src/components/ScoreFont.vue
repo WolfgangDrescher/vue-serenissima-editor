@@ -1,5 +1,5 @@
 <template>
-    <div class="vse__score-font">{{ score }}</div>
+    <div class="vse__score-font" :style="{fontSize: $store.getters.getFontSize}">{{ score }}</div>
 </template>
 
 <script>
