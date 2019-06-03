@@ -17,7 +17,7 @@ export default {
                 notes: ['1' ,'2', '3', '4', '5', '6', '7', '8', 'q', 'w', 'e'],
                 rests: ['10' ,'20', '30', '40', '50', '60', '70', /*'80',*/ 'q0', 'w0', 'e0'],
                 additions: ['+', '-', 'U', '.'],
-                specialCharacters: ['u', 'i', 'o', 'p', 'B', 'E', 'R'],
+                specialCharacters: ['u', 'i', 'o', 'p', 'B', 'E', 'R', '*'],
             },
             keyCodes: [
                 {
@@ -46,7 +46,7 @@ export default {
                     '+', '-', 'U', '.',
                 ]),
                 ...this.getSpecialCharacters([
-                    'u', 'i', 'o', 'p', 'B', 'E', 'R',
+                    'u', 'i', 'o', 'p', 'B', 'E', 'R', '*',
                 ]),
             ],
         };
