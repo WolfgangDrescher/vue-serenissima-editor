@@ -1,8 +1,7 @@
-export const renderCanvas = function(canvas, text, width, height) {
+export const renderCanvas = function(canvas, text, width) {
     const context = canvas.getContext('2d');
     width = width || canvas.clientWidth;
-    height = height || canvas.clientHeight;
-    setCanvasSizes(context, width, height);
+    setCanvasSizes(context, width, text);
     clearCanvas(context);
     context.font = '5rem Serenissima';
     context.textBaseline = 'top';
@@ -16,12 +15,17 @@ export const clearCanvas = function(context) {
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
 };
 
-export const setCanvasSizes = function(context, width, height) {
+export const setCanvasSizes = function(context, width, text) {
     let ratio = pixelRatio(context);
+    let height = getCanvasHeight(context, text, width);
     context.canvas.width = width * ratio;
     context.canvas.height = height * ratio;
     context.canvas.style.width = width + 'px';
     context.canvas.style.height = height + 'px';
+};
+
+export const getCanvasHeight = function(context, text, width) {
+    return countTextLines(context, text, width) * measureTextHeight(context);
 };
 
 export const pixelRatio = function(context) {
@@ -51,6 +55,17 @@ export const fillTextMultiline = function(context, text, x, y, lineHeight, fitWi
         }
     }
     context.fillText(text, x, y);
+};
+
+export const countTextLines = function(context, text, fitWidth) {
+    let lines = 1;
+    for (let idx = 1; idx <= text.length; idx++) {
+        let str = text.substr(0, idx);
+        if(context.measureText(str).width > fitWidth) {
+            return lines + countTextLines(context, text.substr(idx-1), fitWidth);
+        }
+    }
+    return lines;
 };
 
 export const measureTextHeight = function(context) {

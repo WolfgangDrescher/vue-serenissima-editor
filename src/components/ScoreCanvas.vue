@@ -25,7 +25,7 @@ export default {
         },
     },
     mounted() {
-        renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth, this.$el.clientHeight);
+        renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth);
         window.addEventListener('resize', this.onResize);
     },
     destroyed() {
@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         onResize() {
-            renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth, this.$el.clientHeight);
+            renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth);
         },
     },
 };
