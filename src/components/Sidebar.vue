@@ -71,7 +71,7 @@ export default {
             this.$store.commit('toggleSidebar');
         },
         exportCanvasAsPng() {
-            renderCanvas(this.exportCanvas, this.score, this.width);
+            renderCanvas(this.exportCanvas, this.score, this.width, this.$store.getters.getFontSize);
             let image = this.exportCanvas.toDataURL('image/png', 1.0).replace('image/png', 'image/octet-stream'),
                 link = document.createElement('a');
             link.download = 'score.png';
