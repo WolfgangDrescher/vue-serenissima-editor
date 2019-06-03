@@ -13,19 +13,35 @@ export default {
             type: String,
             default: '',
         },
+        fontSize: {
+            type: Number,
+            default: 5,
+        },
+        fontSizeUnit: {
+            type: String,
+            default: 'rem',
+        },
     },
     data() {
         return {
             context: null,
         };
     },
+    computed: {
+        getFontSize() {
+            return this.fontSize + this.fontSizeUnit;
+        },
+    },
     watch: {
         score() {
             renderCanvas(this.$refs.scoreCanvas, this.score);
         },
+        getFontSize() {
+            renderCanvas(this.$refs.scoreCanvas, this.score, null, this.getFontSize);
+        },
     },
     mounted() {
-        renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth);
+        renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth, this.getFontSize);
         window.addEventListener('resize', this.onResize);
     },
     destroyed() {
@@ -33,7 +49,7 @@ export default {
     },
     methods: {
         onResize() {
-            renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth);
+            renderCanvas(this.$refs.scoreCanvas, this.score, this.$el.clientWidth, this.getFontSize);
         },
     },
 };
