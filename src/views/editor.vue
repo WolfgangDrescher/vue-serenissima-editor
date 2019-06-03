@@ -3,7 +3,7 @@
         <div class="vse__main-wrapper">
             <div class="vse__main">
                 <div class="vse__score-wrapper">
-                    <component :is="$store.state.scoreMode" :score="$store.state.score" />
+                    <component :is="$store.state.scoreMode" :score="$store.state.score" :font-size="this.$store.state.fontSize" :font-size-unit="this.$store.state.fontSizeUnit" />
                 </div>
                 <div class="vse__footer">
                     <console />
