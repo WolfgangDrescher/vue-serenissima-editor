@@ -15,6 +15,11 @@
                 <h2>Settings</h2>
                 <button @click="$store.commit('setScoreMode', 'ScoreCanvas')">Canvas</button>
                 <button @click="$store.commit('setScoreMode', 'ScoreFont')">Font</button>
+                <div>
+                    Font size: <input type="text" v-model="fontSize" />rem
+                    <button @click="fontSize += .5">+</button>
+                    <button @click="fontSize -= .5">-</button>
+                </div>
             </div>
             <div class="vse__export">
                 <h2>Export</h2>
@@ -43,6 +48,14 @@ export default {
         };
     },
     computed: {
+        fontSize: {
+            get() {
+                return this.$store.state.fontSize;
+            },
+            set(value) {
+                return this.$store.commit('setFontSize', value);
+            },
+        },
         score() {
             return this.$store.state.score;
         },
