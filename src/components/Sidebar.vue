@@ -16,6 +16,11 @@
                 <button @click="$store.commit('setScoreMode', 'ScoreCanvas')">Canvas</button>
                 <button @click="$store.commit('setScoreMode', 'ScoreFont')">Font</button>
             </div>
+            <div class="vse__export">
+                <h2>Export</h2>
+                Width: <input type="text" v-model="width" />px
+                <button @click="exportCanvasAsPng">Download PNG</button>
+            </div>
         </div>
         <div class="vse__sidebar-footer">
             By Elam Rotem and Wolfgang Drescher
@@ -26,17 +31,39 @@
 
 <script>
 import Key from './Key.vue';
+import { renderCanvas } from '../score-canvas-methods.js';
 
 export default {
     components: { Key },
     data() {
         return {
+            width: 1280,
+            exportCanvas: null,
             specialCharacters: ['u', 'i', 'o', 'p', 'B', 'E', 'R', '*'],
         };
+    },
+    computed: {
+        score() {
+            return this.$store.state.score;
+        },
+    },
+    created() {
+        this.exportCanvas = document.createElement('canvas');
+    },
+    mounted() {
+        renderCanvas(this.exportCanvas, this.score);
     },
     methods: {
         toggleSidebar() {
             this.$store.commit('toggleSidebar');
+        },
+        exportCanvasAsPng() {
+            renderCanvas(this.exportCanvas, this.score, this.width);
+            let image = this.exportCanvas.toDataURL('image/png', 1.0).replace('image/png', 'image/octet-stream'),
+                link = document.createElement('a');
+            link.download = 'score.png';
+            link.href = image;
+            link.click();
         },
     },
 };
