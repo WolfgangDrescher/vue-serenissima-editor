@@ -1,3 +1,5 @@
+import scss from './assets/scss/variables.scss';
+
 export const renderCanvas = function(canvas, text, width) {
     const context = canvas.getContext('2d');
     width = width || canvas.clientWidth;
@@ -5,7 +7,7 @@ export const renderCanvas = function(canvas, text, width) {
     clearCanvas(context);
     context.font = '5rem Serenissima';
     context.textBaseline = 'top';
-    context.fillStyle = '#2c3e50';
+    context.fillStyle = scss.textColor;
     fillTextMultiline(context, text, 0, 0, measureTextHeight(context), width);
 };
 
