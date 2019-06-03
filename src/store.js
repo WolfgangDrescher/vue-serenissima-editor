@@ -28,4 +28,9 @@ export default new Vuex.Store({
             state.fontSize = value;
         },
     },
+    getters: {
+        getFontSize: state => {
+            return state.fontSize + state.fontSizeUnit;
+        },
+    },
 });
