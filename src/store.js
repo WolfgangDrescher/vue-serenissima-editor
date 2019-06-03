@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        fontSize: 5,
+        fontSizeUnit: 'rem',
         score: '',
         sidebarIsOpen: false,
         scoreMode: 'ScoreCanvas',
@@ -21,6 +23,9 @@ export default new Vuex.Store({
         },
         setScoreMode(state, value) {
             state.scoreMode = value;
+        },
+        setFontSize(state, value) {
+            state.fontSize = value;
         },
     },
 });
