@@ -2,12 +2,12 @@
     <div :class="['vse__editor', {'vse__editor--sidebar-is-open': $store.state.sidebarIsOpen}]">
         <div class="vse__main-wrapper">
             <div class="vse__main">
+                <div class="vse__header">
+                    <gui class="vse__gui" />
+                    <console />
+                </div>
                 <div class="vse__score-wrapper">
                     <component :is="$store.state.scoreMode" :score="$store.state.score" :font-size="this.$store.state.fontSize" :font-size-unit="this.$store.state.fontSizeUnit" />
-                </div>
-                <div class="vse__footer">
-                    <console />
-                    <gui class="vse__gui" />
                 </div>
             </div>
         </div>
@@ -36,12 +36,12 @@ export default {
         width: 100%;
         height: 100%;
     }
-    .vse__footer {
+    .vse__header {
         padding: 1rem;
-        border-top: 1px solid $borderColor;
+        border-bottom: 1px solid $borderColor;
     }
     .vse__gui {
-        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
     .vse__main-wrapper {
         height: 100%;
