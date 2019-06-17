@@ -1,7 +1,11 @@
 <template>
     <div class="vse__key" @click="add">
         <div class="vse__preview">{{ keyCode }}</div>
-        <kbd>{{ keyCode }}</kbd>
+        <kbd :class="{
+            'vse__kbd': true,
+            'vse__kbd--bottom': isInterspace,
+            'vse__kbd--top': isOnLine,
+        }">{{ keyCode }}</kbd>
     </div>
 </template>
 
@@ -11,6 +15,26 @@ export default {
         keyCode: {
             type: String,
             required: true,
+        },
+    },
+    data() {
+        return {
+            interspaces: [
+                'z', 'x', 'c', 'v', 'b', 'n', 'm', ',',
+            ],
+            lines: [
+                's', 'd', 'f', 'g', 'h', 'j', 'k',
+            ],
+        };
+    },
+    computed: {
+        isInterspace() {
+            let lastChar = this.keyCode.charAt(this.keyCode.length - 1);
+            return this.interspaces.includes(lastChar);
+        },
+        isOnLine() {
+            let lastChar = this.keyCode.charAt(this.keyCode.length - 1);
+            return this.lines.includes(lastChar);
         },
     },
     methods: {
@@ -26,7 +50,7 @@ export default {
         text-align: center;
         margin: 0 5px;
 
-        kbd {
+        .vse__kbd {
             width: 25px;
             height: 25px;
             border: 1px solid #a9a9a9;
@@ -37,15 +61,23 @@ export default {
             display: flex;
             justify-content: center;
             flex-direction: column;
-            margin: 0 auto;
+            margin: .5rem auto;
             overflow: visible;
-        }
 
-        kbd:hover {
-            background-color: #75b4fb;
-            border: 1px solid #5a88c5;
-            color: #fff;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+            &.vse__kbd--bottom {
+                margin: 1rem auto 0;
+            }
+
+            &.vse__kbd--top {
+                margin: 0 auto 1rem;
+            }
+
+            &:hover {
+                background-color: #75b4fb;
+                border: 1px solid #5a88c5;
+                color: #fff;
+                text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+            }
         }
     }
 
