@@ -1,5 +1,7 @@
 import VueInstance from './src/vue.js';
-import ScoreComponent from './src/components/Score.vue';
+import ScoreFontComponent from './src/components/ScoreFont.vue';
+import ScoreCanvasComponent from './src/components/ScoreCanvas.vue';
 
-export const SerenissimaReader = ScoreComponent;
+export const ScoreFont = ScoreFontComponent;
+export const ScoreCanvas = ScoreCanvasComponent;
 export default VueInstance;
