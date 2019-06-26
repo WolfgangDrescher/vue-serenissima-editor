@@ -1,13 +1,26 @@
 <template>
-    <div class="vse__score-font" :style="{fontSize: $store.getters.getFontSize}">{{ score }}</div>
+    <div class="vse__score-font" :style="{fontSize: getFontSize}">{{ score }}</div>
 </template>
 
 <script>
 export default {
     props: {
+        fontSize: {
+            type: Number,
+            default: 5,
+        },
+        fontSizeUnit: {
+            type: String,
+            default: 'rem',
+        },
         score: {
             type: String,
             default: '',
+        },
+    },
+    computed: {
+        getFontSize() {
+            return this.fontSize + this.fontSizeUnit;
         },
     },
 };
